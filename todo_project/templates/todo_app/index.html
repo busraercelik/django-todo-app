@@ -1,0 +1,13 @@
+{% extends "todo_app/base.html" %}
+
+{% block title %} HOME PAGE {% endblock title %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container text-center">
+        <h1 class="display-4">TO-DO List</h1>
+        <p class="lead">Take a note..</p>
+          <a href="{% url 'create' %}" type="button" class="btn btn-outline-success">Create To-Do</a>
+      </div>
+    </div>
+{% endblock content %}
