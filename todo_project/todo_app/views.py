@@ -38,3 +38,19 @@ def delete(request, Todos_id):
 
     # silme işlemi sonrası gideceği sayfayı redirect ile belirtiriz
     return redirect('index')
+
+
+def done(request, Todos_id):
+    selected_todo = Todos.objects.get(pk=Todos_id)
+    selected_todo.is_finished = False
+    selected_todo.save()
+
+    return redirect('index')
+
+
+def undone(request, Todos_id):
+    selected_todo = Todos.objects.get(pk=Todos_id)
+    selected_todo.is_finished = True
+    selected_todo.save()
+
+    return redirect('index')

@@ -7,7 +7,7 @@
         <div class="container text-center">
             <h1 class="display-4">TO-DO List</h1>
             <p class="lead">Take a note..</p>
-            <a href="{% url 'create' %}" type="button" class="btn btn-outline-success">Create To-Do</a>
+            <a href="{% url 'create' %}" type="button" class="btn btn-success">Create To-Do</a>
         </div>
     </div>
 {% endblock content %}
@@ -18,7 +18,7 @@
             <thead>
             <tr>
                 <th scope="col">To-Do List</th>
-                <th scope="col">Done</th>
+                <th scope="col">Status</th>
                 <th scope="col">Date</th>
                 <th scope="col">Delete</th>
                 <th scope="col">Update</th>
@@ -30,16 +30,16 @@
                      <!-- todo bittiyse üzerini çiz -->
                      {% if todo.is_finished %}
                         <td><del>{{ todo.title }}</del></td>
+                         <td><a href="{% url 'done' todo.id %}" role="button" class="btn btn-secondary">Done</a></td>
                     {% else %}
                         <td>{{ todo.title }}</td>
+                         <td><a href="{% url 'undone' todo.id %}" role="button" class="btn btn-warning">Undone</a></td>
                     {% endif %}
-
-                    <td>{{ todo.is_finished }}</td>
                     <td>{{ todo.date }}</td>
                     <!-- id sine göre silme işlemi yapar-->
                     <td><a href="{% url 'delete' todo.id %}" role="button" class="btn btn-outline-danger">Delete</a>
                     </td>
-                    <td><a href="" role="button" class="btn btn-outline-warning">Update</a></td>
+                    <td><a href="" role="button" class="btn btn-outline-primary">Update</a></td>
                 </tr>
             {% endfor %}
             </tbody>
