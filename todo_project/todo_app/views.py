@@ -54,3 +54,16 @@ def undone(request, Todos_id):
     selected_todo.save()
 
     return redirect('index')
+
+
+def update(request, Todos_id):
+    if request.method == "POST":
+        selected_todo = Todos.objects.get(pk=Todos_id)
+        form = ListForm(request.POST or None, instance=selected_todo)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        selected_todo = Todos.objects.get(pk=Todos_id)
+        return render(request, 'todo_app/update.html', {'selected_todo': selected_todo})
+
