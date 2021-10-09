@@ -30,8 +30,9 @@
           <td>{{ todo.title }}</td>
           <td>{{ todo.is_finished }}</td>
           <td>{{ todo.date }}</td>
-          <td></td>
-          <td></td>
+          <!-- id sine göre silme işlemi yapar-->
+          <td><a href="{% url 'delete' todo.id %}" role="button" class="btn btn-outline-danger">Delete</a></td>
+          <td><a href="" role="button" class="btn btn-outline-warning">Update</a></td>
         </tr>
       {% endfor %}
       </tbody>

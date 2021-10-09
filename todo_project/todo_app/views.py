@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Todos
 from .forms import ListForm
 
@@ -29,3 +29,12 @@ def create(request):
     else:
         todo_list = Todos.objects.all()
         return render(request, 'todo_app/create.html', {'todo_list': todo_list})
+
+
+def delete(request, Todos_id):
+    # çağrılan id yi getir ve sil
+    selected_todo = Todos.objects.get(pk=Todos_id)
+    selected_todo.delete()
+
+    # silme işlemi sonrası gideceği sayfayı redirect ile belirtiriz
+    return redirect('index')
