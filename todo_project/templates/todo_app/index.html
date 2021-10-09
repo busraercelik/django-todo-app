@@ -4,39 +4,46 @@
 
 {% block content %}
     <div class="jumbotron jumbotron-fluid mt-3">
-      <div class="container text-center">
-        <h1 class="display-4">TO-DO List</h1>
-        <p class="lead">Take a note..</p>
-          <a href="{% url 'create' %}" type="button" class="btn btn-outline-success">Create To-Do</a>
-      </div>
+        <div class="container text-center">
+            <h1 class="display-4">TO-DO List</h1>
+            <p class="lead">Take a note..</p>
+            <a href="{% url 'create' %}" type="button" class="btn btn-outline-success">Create To-Do</a>
+        </div>
     </div>
 {% endblock content %}
 
 {% block table %}
     <div class="table-responsive-md mt-5 align-middle">
-    <table class="table table-hover push-center" style="width:650px">
-      <thead>
-        <tr>
-            <th scope="col">To-Do List</th>
-            <th scope="col">Done</th>
-            <th scope="col">Date</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Update</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for todo in todo_list %}
-        <tr>
-          <td>{{ todo.title }}</td>
-          <td>{{ todo.is_finished }}</td>
-          <td>{{ todo.date }}</td>
-          <!-- id sine göre silme işlemi yapar-->
-          <td><a href="{% url 'delete' todo.id %}" role="button" class="btn btn-outline-danger">Delete</a></td>
-          <td><a href="" role="button" class="btn btn-outline-warning">Update</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+        <table class="table table-hover push-center" style="width:650px">
+            <thead>
+            <tr>
+                <th scope="col">To-Do List</th>
+                <th scope="col">Done</th>
+                <th scope="col">Date</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for todo in todo_list %}
+                <tr>
+                     <!-- todo bittiyse üzerini çiz -->
+                     {% if todo.is_finished %}
+                        <td><del>{{ todo.title }}</del></td>
+                    {% else %}
+                        <td>{{ todo.title }}</td>
+                    {% endif %}
+
+                    <td>{{ todo.is_finished }}</td>
+                    <td>{{ todo.date }}</td>
+                    <!-- id sine göre silme işlemi yapar-->
+                    <td><a href="{% url 'delete' todo.id %}" role="button" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                    <td><a href="" role="button" class="btn btn-outline-warning">Update</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock table %}
 
